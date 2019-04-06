@@ -8,6 +8,8 @@ services:
       - "3000:3000" #specify ports forewarding
     links:
       - database
+    depends_on:
+      - database  
 
   database: # name of the third service
     image: mongo # specify image to build container from
