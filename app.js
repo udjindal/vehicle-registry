@@ -8,7 +8,7 @@ const config = require('./config/database');
 //const bucketlist = require('./controllers/bucketlist');
 
 //Connect mongoose to our database
-mongoose.connect(config.database);
+mongoose.connect(config.database, { useNewUrlParser: true });
 
 //Declaring Port
 const port = 3000;
@@ -45,4 +45,3 @@ app.get('/', (req,res) => {
 app.listen(port, () => {
 	console.log(`Starting the server at port ${port}`);
 });
-
