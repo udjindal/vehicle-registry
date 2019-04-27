@@ -8,7 +8,7 @@ const movement = require('../models/Movement');
 router.get('/',(req,res) => {
 	vehicle.getAllVehicle((err, vehicles)=> {
 		if(err) {
-			res.json({success:false, message: `Failed to load all lists. Error: ${err}`});
+			res.json({success:false, message: `Failed to load all vehicles. Error: ${err}`});
 		}
 		else {
 			res.write(JSON.stringify({success: true, vehicles:vehicles},null,2));
@@ -74,7 +74,7 @@ router.delete('/:id', (req,res,next)=> {
 	console.log(id);
 	vehicle.deleteVehicleById(id,(err,list) => {
 		if(err) {
-			res.json({success:false, message: `Failed to delete the list. Error: ${err}`});
+			res.json({success:false, message: `Failed to delete the vehicle. Error: ${err}`});
 		}
 		else if(list) {
 			res.json({success:true, message: "Deleted successfully"});
