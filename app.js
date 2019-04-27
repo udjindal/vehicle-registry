@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./config/database');
-//const bucketlist = require('./controllers/bucketlist');
+const owner = require('./controllers/owner');
+const vehicle = require('./controllers/vehicle');
 
 //Connect mongoose to our database
 mongoose.connect(config.database, { useNewUrlParser: true });
@@ -38,7 +39,8 @@ app.get('/', (req,res) => {
 
 
 //Routing all HTTP requests to /bucketlist to bucketlist controller
-//app.use('/bucketlist',bucketlist);
+app.use('/api/owner',owner);
+app.use('/api/vehicle',vehicle);
 
 
 //Listen to port 3000
