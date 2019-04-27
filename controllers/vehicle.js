@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const vehicle = require('../models/Vehicle');
-
+const movement = require('../models/Movement');
 
 //GET HTTP method to /bucketlist
 router.get('/',(req,res) => {
@@ -17,6 +17,17 @@ router.get('/',(req,res) => {
 	});
 });
 
+router.get('/getAllEntries',(req,res) => {
+  movement.getAllEntries((err, entries)=> {
+		if(err) {
+			res.json({success:false, message: `Failed to load all entries. Error: ${err}`});
+		}
+		else {
+			res.write(JSON.stringify({success: true, entries:entries},null,2));
+			res.end();
+	}
+	});
+});
 
 //POST HTTP method to /bucketlist
 
@@ -30,7 +41,7 @@ router.post('/', (req,res,next) => {
 	});
 	vehicle.addVehicle(newVehicle,(err, list) => {
 		if(err) {
-			res.json({success: false, message: `Failed to create a new list. Error: ${err}`});
+			res.json({success: false, message: `Failed to add new vehicle. Error: ${err}`});
 
 		}
 		else
@@ -39,6 +50,23 @@ router.post('/', (req,res,next) => {
 	});
 });
 
+
+router.post('/newEntry', (req,res,next) => {
+	console.log(req.body);
+	let newEntry = new movement({
+		movement: req.body.movement,
+    vehicle_id: req.body.vehicle_id
+	});
+	movement.addEntry(newEntry,(err, list) => {
+		if(err) {
+			res.json({success: false, message: `Failed to create new entry. Error: ${err}`});
+
+		}
+		else
+			res.json({success:true, message: "Added successfully."});
+
+	});
+});
 
 //DELETE HTTP method to /bucketlist. Here, we pass in a params which is the object id.
 router.delete('/:id', (req,res,next)=> {

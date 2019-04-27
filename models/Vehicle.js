@@ -13,11 +13,6 @@ const VehicleSchema = mongoose.Schema({
         type: String,
         enum: ['TwoWheeler', 'ThreeWheeler', 'FourWheeler']
     },
-    movement : {
-      type: String,
-      default: 'in',
-      enum: ['in', 'out']
-    },
     owner_id: {
       type: String,
       required: true
