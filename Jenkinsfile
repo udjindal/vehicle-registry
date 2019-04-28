@@ -11,7 +11,7 @@ pipeline {
                     # TAG=$BUILD_NUMBER
                     TAG=latest
                     echo "The base image has been rebuilt. Deleting all other containers and images ahead of rebuild"
-                    docker rm -f $(docker ps -a -q) || true
+                    #docker rm -f $(docker ps -a -q) || true
                     # For now, deleting all images other than the the one with id=IMAGE_ID. If this turns out to be over-raeaching it can be susbtitutued with the below
                     # docker rmi $(docker images | grep -Ei $TAG | grep -Eiv latest
                     # docker rmi -f $(docker images -q | grep -Eiv latest) || true
