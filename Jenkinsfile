@@ -16,8 +16,7 @@ pipeline {
                     # docker rmi $(docker images | grep -Ei $TAG | grep -Eiv latest
                     # docker rmi -f $(docker images -q | grep -Eiv latest) || true
                     ## Now building remaining microservices
-                    docker-compose --build
-                    build_all
+                    docker-compose build
                 '''
             }
         }
