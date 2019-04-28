@@ -26,7 +26,7 @@ pipeline {
             steps {
                 sh '''
                 sudo apt install -y gnupg2 pass
-                docker-compose -f push
+                docker-compose push
                 '''
             }
         }
