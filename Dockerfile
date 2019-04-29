@@ -10,7 +10,7 @@ RUN npm install
 
 RUN ls
 
-RUN ng build
+RUN npm run-script build
 
 WORKDIR /home/vehicle-registry
 
