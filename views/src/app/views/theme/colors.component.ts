@@ -13,11 +13,21 @@ export class ColorsComponent {
 
   existing: boolean = true
 
-  selected_owner = "choose owner";
-  vehicle_type = "TwoWheeler";
-  api_path = environment.api_path;
-  owners : any;
   number : string = ""
+  vehicle_type = "TwoWheeler";
+
+  api_path = environment.api_path;
+
+  selected_owner = "choose owner";
+  owners : any;
+
+  owner_type : string = "Visitor";
+  phone_number : string = "";
+  name : string = "";
+
+  
+
+
 
   constructor(private httpClient: HttpClient){
     this.httpClient.get(this.api_path+'owner').subscribe((res : any)=>{
@@ -65,6 +75,7 @@ export class ColorsComponent {
     }
 
     else{
+      
       var data = {owner_id : this.selected_owner, category : this.vehicle_type, number : this.number.toLowerCase()};
 
       this.httpClient.post(this.api_path+'vehicle',data).subscribe((res : any)=>{
@@ -81,6 +92,66 @@ export class ColorsComponent {
       
       })
     }
-
   }
+
+  change_owner_type(selected){
+    this.owner_type=selected;
+    console.log(selected)
+  }
+
+  add_new(event){
+    console.log(this.number);
+    if(this.number === ""){
+      window.alert("Enter Vehicle Number!");
+    }
+
+    else if(this.phone_number === ""){
+      window.alert("Enter Phone Number!");
+    }
+
+    else if(this.name === ""){
+      window.alert("Enter Name!");
+    }
+
+    else{
+      var data = {name : this.name.toLowerCase, category : this.owner_type, mobile : this.phone_number};
+
+      this.httpClient.post(this.api_path+'owner',data).subscribe((res : any)=>{
+
+        console.log(res.success); 
+        if(res.success === true){
+          var data1 = {mobile : this.phone_number};
+          this.httpClient.get(this.api_path+'owner/'+this.phone_number).subscribe((res:any)=>{
+            if(res.success === true){
+              var id = res._id;
+              var data = {owner_id : id, category : this.vehicle_type, number : this.number.toLowerCase()};
+
+              this.httpClient.post(this.api_path+'vehicle',data).subscribe((res : any)=>{
+
+                console.log(res.success); 
+                if(res.success === true){
+                  window.alert("New Entry Added");
+                  this.number = "";
+                }
+                else{
+                  window.alert("error3");
+                  return;
+                }    
+              
+              })
+            }
+            else{
+              window.alert("error2");
+            }
+          })
+        }
+        else{
+          window.alert("error1");
+          return;
+        }    
+      
+      })
+    }
+  }
+
 }

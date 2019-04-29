@@ -24,7 +24,6 @@
 
               <option class="dropdown-item" [ngValue]="FourWheeler">FourWheeler</option>
               
-            
           </select>
         </div>
 
@@ -42,35 +41,40 @@
             <select class="btn btn-secondary dropdown-toggle" (change)="change_owner($event.target.value)" data-toggle="dropdown">
 
                 <option class="dropdown-item" [ngValue]="null" disabled>Choose existing owner</option>
-                <option class="dropdown-item" value={{owner._id}} *ngFor="let owner of owners">{{owner._id}}</option>
+                <option class="dropdown-item" value={{owner._id}} *ngFor="let owner of owners">{{owner.number}}</option>
               
             </select>
             
 
           </div>
-          <button type="button" class="btn btn-block btn-success" (click)="add_existing($event)">Create Account</button>
+          <button type="button" class="btn btn-block btn-success" (click)="add_existing($event)">Add</button>
         </div>
 
         <div *ngIf="!existing">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text">@</span>
+                <span class="input-group-text"><i class="icon-phone"></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Email" autocomplete="email" required>
+            <input type="text" class="form-control" [(ngModel)] = "phone_number" [ngModelOptions]="{standalone: true}" placeholder="Phone Number" required>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="icon-lock"></i></span>
+              <span class="input-group-text"><i class="icon-user"></i></span>
             </div>
-            <input type="password" class="form-control" placeholder="Password" autocomplete="new-password" required>
+            <input type="text" class="form-control" [(ngModel)] = "name" placeholder="Name" [ngModelOptions]="{standalone: true}" required>
           </div>
+          
           <div class="input-group mb-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="icon-lock"></i></span>
+              <select class="form-control" (change)="change_owner_type($event.target.value)" data-toggle="dropdown">
+    
+                  <option class="dropdown-item" [ngValue]="TwoWheeler">Visitor</option>
+    
+                  <option class="dropdown-item" [ngValue]="ThreeWheeler">PermanentResident</option>
+                  
+              </select>
             </div>
-            <input type="password" class="form-control" placeholder="Repeat password" autocomplete="new-password" required>
-          </div>
-          <button type="button" class="btn btn-block btn-success" (click)="add_new($event)">Create Account</button>
+
+          <button type="button" class="btn btn-block btn-success" (click)="add_new($event)">Add</button>
         </div>
       </form>
     </div>

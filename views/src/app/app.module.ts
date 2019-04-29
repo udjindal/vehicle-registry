@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import {environment} from 'environments/environment';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -47,7 +50,9 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     AppAsideModule,
     AppBreadcrumbModule.forRoot(),
     AppFooterModule,
+    HttpClientModule,
     AppHeaderModule,
+    FormsModule,
     AppSidebarModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
