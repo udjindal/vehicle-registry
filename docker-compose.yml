@@ -1,11 +1,6 @@
 version: '3'
 
 services:
-  app:
-    image: docker-logs-elk/dummy-app:1.0.0
-    build:
-      context: dummy-app
-      dockerfile: Dockerfile
   filebeat:
     hostname: filebeat
     image: docker-logs-elk/filebeat:1.0.0
@@ -27,8 +22,8 @@ services:
       - elasticsearch
     ports:
       - 5601:5601
-  logstash: 
-    hostname: logstash 
+  logstash:
+    hostname: logstash
     image: docker-logs-elk/logstash:1.0.0
     build:
       context: logstash
