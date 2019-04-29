@@ -1,0 +1,33 @@
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3 ">
+          <h4 class="mb-3">Entry/Exit Logging</h4>
+        </div><!--/.col-->
+      </div><!--/.row-->
+      
+      <form>
+        <div class="row mt-5">
+          <div class="col-sm-6 offset-md-3">
+
+          <div class="input-group input-group-lg">
+            <input type="text" class="form-control" placeholder="Vehicle Number" autocomplete="username" required>
+          </div>
+          </div>
+
+        </div>
+
+        <div class="row mt-5">
+          <div class="col-md-2 offset-md-3">
+              <button type="button" class="btn btn-block btn-success" (click)="entry($event)">Entry</button>
+          </div>
+          <div class="col-md-2 offset-md-2">
+              <button type="button" class="btn btn-block btn-success" (click)="exit($event)">Exit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--/.card-->
+</div>
