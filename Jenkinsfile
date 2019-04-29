@@ -25,8 +25,7 @@ pipeline {
         stage('Push to DockerHub'){
             steps {
                 sh '''
-                sudo apt install -y gnupg2 pass
-                docker-compose push
+                docker push udjindal/ubuntu-vehicle-registry:latest
                 '''
             }
         }
