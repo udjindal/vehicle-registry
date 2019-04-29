@@ -16,12 +16,28 @@ router.get('/',(req,res) => {
 	});
 });
 
+router.get('/:number',(req,res,next) => {
+	//console.log(req.params.number);
+	let number = req.params.number;
+	owner.getOwner(number, (err, owner)=> {
+		if(err) {
+			res.json({success:false, message: `Failed to load all owners. Error: ${err}`});
+		}
+		else {
+			res.write(JSON.stringify({success: true, owner:owner},null,2));
+			res.end();
+
+	}
+	});
+});
+
 
 //POST HTTP method to /bucketlist
 
 router.post('/', (req,res,next) => {
 	console.log(req.body);
 	let newOwner = new owner({
+		number: req.body.number,
 		name: req.body.name,
 		description: req.body.description,
 		category: req.body.category,

@@ -7,6 +7,10 @@ const OwnerSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    number: {
+        type: String,
+        required: true,
+    },
     description: String,
     category: {
         type: String,
@@ -22,6 +26,10 @@ const Owner = module.exports = mongoose.model('Owner', OwnerSchema );
 //BucketList.find() returns all the lists
 module.exports.getAllOwners = (callback) => {
 	Owner.find(callback);
+}
+
+module.exports.getOwner = (number, callback) => {
+	Owner.findOne({'number': number}, callback);
 }
 
 //newList.save is used to insert the document into MongoDB
