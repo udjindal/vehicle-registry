@@ -65,15 +65,14 @@ export class ColorsComponent {
     }
 
     else{
-      var data = {owner_id : this.selected_owner, category : this.vehicle_type, number : this.number};
+      var data = {owner_id : this.selected_owner, category : this.vehicle_type, number : this.number.toLowerCase()};
 
       this.httpClient.post(this.api_path+'vehicle',data).subscribe((res)=>{
 
         console.log(res.success); 
         if(res.success === true){
           window.alert("New Entry Added");
-          this.name = ""
-
+          this.name = "";
         }
         else{
           window.alert("error");
