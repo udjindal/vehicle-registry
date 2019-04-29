@@ -16,11 +16,11 @@ export class ColorsComponent {
   selected_owner = "choose owner";
   vehicle_type = "TwoWheeler";
   api_path = environment.api_path;
-  owners;
+  owners : any;
   number : string = ""
 
   constructor(private httpClient: HttpClient){
-    this.httpClient.get(this.api_path+'owner').subscribe((res)=>{
+    this.httpClient.get(this.api_path+'owner').subscribe((res : any)=>{
 
       if(res.success === true){
         console.log(res);
@@ -67,15 +67,16 @@ export class ColorsComponent {
     else{
       var data = {owner_id : this.selected_owner, category : this.vehicle_type, number : this.number.toLowerCase()};
 
-      this.httpClient.post(this.api_path+'vehicle',data).subscribe((res)=>{
+      this.httpClient.post(this.api_path+'vehicle',data).subscribe((res : any)=>{
 
         console.log(res.success); 
         if(res.success === true){
           window.alert("New Entry Added");
-          this.name = "";
+          this.number = "";
         }
         else{
           window.alert("error");
+          return;
         }    
       
       })

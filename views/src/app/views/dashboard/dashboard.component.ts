@@ -13,7 +13,7 @@ export class DashboardComponent{
   vehicles;
 
   constructor(private httpClient: HttpClient){
-    this.httpClient.get(this.api_path+'vehicle').subscribe((res)=>{
+    this.httpClient.get(this.api_path+'vehicle').subscribe((res : any)=>{
 
         console.log(this.api_path);
         console.log(res.vehicles);
@@ -43,7 +43,7 @@ export class DashboardComponent{
 
     var data = {vehicle_id : id, movement : "in"};
 
-    this.httpClient.post(this.api_path+'vehicle/newEntry',data).subscribe((res)=>{
+    this.httpClient.post(this.api_path+'vehicle/newEntry',data).subscribe((res : any)=>{
 
       console.log(res.success); 
       if(res.success === true){
@@ -76,7 +76,7 @@ export class DashboardComponent{
 
     var data = {vehicle_id : id, movement : "out"};
 
-    this.httpClient.post(this.api_path+'vehicle/newEntry',data).subscribe((res)=>{
+    this.httpClient.post(this.api_path+'vehicle/newEntry',data).subscribe((res : any)=>{
 
       console.log(res.success); 
       if(res.success === true){
