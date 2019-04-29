@@ -25,6 +25,7 @@ pipeline {
         stage('Push to DockerHub'){
             steps {
                 sh '''
+                docker login -u udjindal -p samsungs5620
                 docker push udjindal/ubuntu-vehicle-registry:latest
                 '''
             }
