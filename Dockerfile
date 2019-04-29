@@ -10,7 +10,7 @@ RUN npm install
 
 RUN ls
 
-RUN npm run-script build
+RUN ng build
 
 WORKDIR /home/vehicle-registry
 
@@ -19,4 +19,3 @@ RUN npm install
 EXPOSE 3000
 
 CMD ["npm", "start"]
-
