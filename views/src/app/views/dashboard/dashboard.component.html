@@ -7,26 +7,27 @@
         </div><!--/.col-->
       </div><!--/.row-->
       
-      <form>
         <div class="row mt-5">
           <div class="col-sm-6 offset-md-3">
 
-          <div class="input-group input-group-lg">
-            <input type="text" class="form-control" placeholder="Vehicle Number" autocomplete="username" required>
-          </div>
-          </div>
+            <div class="input-group input-group-lg"> 
+                <select class="form-control" (change)="change_selected_vehicle($event.target.value)">
+                    <option [ngValue]="null" disabled>Choose vehicle</option>
+                    <option value={{vehicle.number}} *ngFor="let vehicle of vehicles">{{vehicle.number}}</option>
+                </select>
+            </div>
 
+          </div>
         </div>
 
         <div class="row mt-5">
           <div class="col-md-2 offset-md-3">
-              <button type="button" class="btn btn-block btn-success">Entry</button>
+              <button type="button" class="btn btn-block btn-success" (click)="entry($event)">Entry</button>
           </div>
           <div class="col-md-2 offset-md-2">
-              <button type="button" class="btn btn-block btn-success">Exit</button>
+              <button type="button" class="btn btn-block btn-success" (click)="exit($event)">Exit</button>
           </div>
         </div>
-      </form>
     </div>
   </div>
   <!--/.card-->

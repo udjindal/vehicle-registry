@@ -5,12 +5,27 @@
     </div>
     <div class="card-body">
       <form>
+
         <p class="text-muted">Add Vehicle Details</p>
+
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text"><i class="icon-user"></i></span>
+            <span class="input-group-text"><i class="icon-speedometer"></i></span>
           </div>
-          <input type="text" class="form-control" placeholder="Vehicle Number" autocomplete="username" required>
+          <input type="text" class="form-control" placeholder="Vehicle Number" [(ngModel)] = "number" [ngModelOptions]="{standalone: true}" required>
+        </div>
+
+        <div class="input-group mb-4">
+          <select class="form-control" (change)="change_vehicle_type($event.target.value)" data-toggle="dropdown">
+
+              <option class="dropdown-item" [ngValue]="TwoWheeler">TwoWheeler</option>
+
+              <option class="dropdown-item" [ngValue]="ThreeWheeler">ThreeWheeler</option>
+
+              <option class="dropdown-item" [ngValue]="FourWheeler">FourWheeler</option>
+              
+            
+          </select>
         </div>
 
         <div class="input group mb-3 btn-group btn-group-toggle" data-toggle="buttons">
@@ -23,15 +38,14 @@
         </div>
 
         <div *ngIf="existing">
-          <div class="input group mb-4 dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Existing Person
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-              <a class="dropdown-item" href="#">Item</a>
-              <a class="dropdown-item" href="#">Another item</a>
-              <a class="dropdown-item" href="#">One more item</a>
-            </div>
+          <div class="input-group input-group-lg mb-4 dropdown">
+            <select class="btn btn-secondary dropdown-toggle" (change)="change_owner($event.target.value)" data-toggle="dropdown">
+
+                <option class="dropdown-item" [ngValue]="null" disabled>Choose existing owner</option>
+                <option class="dropdown-item" value={{owner._id}} *ngFor="let owner of owners">{{owner._id}}</option>
+              
+            </select>
+            
 
           </div>
           <button type="button" class="btn btn-block btn-success" (click)="add_existing($event)">Create Account</button>
