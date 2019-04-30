@@ -14,10 +14,15 @@ export class DashboardComponent{
 
   constructor(private httpClient: HttpClient){
     this.httpClient.get(this.api_path+'vehicle').subscribe((res : any)=>{
-
-        console.log(this.api_path);
-        console.log(res.vehicles);
-        this.vehicles=res.vehicles;
+        if(res.success === true){
+          console.log(this.api_path);
+          console.log(res.vehicles);
+          this.vehicles=res.vehicles;
+        }
+        else{
+          window.alert("Backend error!")
+        }
+        
     })
   }
 

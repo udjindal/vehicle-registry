@@ -40,9 +40,9 @@ export const navItems: NavData[] = [
     url: '/theme/colors',
     icon: 'icon-drop'
   },
-  {
-    name: 'All Logs',
-    url: '/theme/typography',
-    icon: 'icon-pencil'
-  }
+  // {
+  //   name: 'All Logs',
+  //   url: '/theme/typography',
+  //   icon: 'icon-pencil'
+  // }
 ];
